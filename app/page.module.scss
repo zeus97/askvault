@@ -8,35 +8,24 @@
 
     .filterA{
         position: absolute;
-        width: 100px;
-        height: 100px;
+        width: 350px;
+        height: 45px;
         border-radius: 50%;
-        background-color: #6527BE;
-        top: 12%;
-        left: 42%;
-        filter: blur(110px);
+        background-color: #fa5fff;
+        top: 30%;
+        left: 40%;
+        filter: blur(100px);
     }
 
     .filterB{
         position: absolute;
-        top:20%;
-        left:30%;
-        width: 100px;
-        height: 300px;
+        top: -5%;
+        right:-5%;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
-        background-color: #45CFDD;
-        filter:blur(110px);
-        
-    }
-    .filterC{
-        position: absolute;
-        top: 35%;
-        left:55%;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: #A7EDE7;
-        filter: blur(90px);
+        background: #fa5fff;
+        filter: blur(150px);
     }
     .container{
         width: 100%;
@@ -49,6 +38,8 @@
         align-items: center;
 
         .title{
+            position: relative;
+            z-index: 10;
             font-size: clamp(2.5rem,4.5vw,4rem);
             width: 100%;
             max-width: 900px;
@@ -70,20 +61,21 @@
 
         .button{
             font-size: 1.6rem;
+            color: #ffffff;
             margin-top: 20px;
             padding: 8px 18px;
             border-radius: 8px;
             border: none;
             background: var(--gradient);
-            box-shadow: 0 0 5px 2px #bebebe9a;
-            transition: box-shadow 0.3s linear;
+            box-shadow: 0 0 5px 2px #ff131360;
+            transition: box-shadow 0.2s linear;
 
             &:active{
                 outline: 3px solid #fff;
             }
 
             &:hover{
-                box-shadow: 0 0 5px 5px #bebebe9a;
+                box-shadow: 0 0 5px 5px #ff13137c;
             }
         }
 
@@ -98,7 +90,4 @@
     
 }
 
-@keyframes filter-animation{
-    from{ transform: rotate(0);}
-    to{transform: rotate(360deg);}
-}
+

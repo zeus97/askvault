@@ -12,7 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(180deg, rgba(0,203,10,1) 0%, rgba(0,119,208,1) 100%);;
+        background: linear-gradient(180deg, rgb(211, 69, 69) 0%, rgb(203, 72, 207) 100%);
         border-right: 2px solid #333333;
 
     }
@@ -21,7 +21,24 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #f5f5f5;
+
+        .signup-title{
+            font-size: 2.5rem;
+        }
+        .signup-text{
+            font-size: 1.4rem;
+            margin-bottom: 100px;
+        }
+        
+    }
+
+
+    
+    @media screen and (max-width:768px){
+        .column-1{
+            display: none;
+        }
     }
 }
+
 

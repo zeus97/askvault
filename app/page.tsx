@@ -8,7 +8,6 @@ export default function Home() {
     <section className={styles.home}>
       <div className={styles.filterA}></div>
       <div className={styles.filterB}></div>
-      <div className={styles.filterC}></div>
 
       <Nav />
       <div className={styles.container}>

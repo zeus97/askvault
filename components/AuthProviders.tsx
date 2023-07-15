@@ -4,6 +4,7 @@ import { getProviders, signIn} from 'next-auth/react';
 import Image from 'next/image';
 
 import '@/styles/AuthProviders.scss';
+import LoadingSpinner from './LoadingSpinner';
 
 type Provider = {
     id:string,
@@ -19,7 +20,6 @@ type Providers = Record<string,Provider>;
 const AuthProviders = ()=> {
 
     const [providers, setProviders] = useState<Providers | null>(null);
-    const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
 
     useEffect(()=>{
         const fetchProviders = async ()=>{
@@ -48,18 +48,13 @@ const AuthProviders = ()=> {
                 )
                 
                 }
-                {providers == null &&
-                <div className="lds-roller">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div> }
+                
+                
             </div>
+        )
+    }else{
+        return (
+            <LoadingSpinner />
         )
     }
 

@@ -20,8 +20,14 @@ const Nav = ()=> {
             <Image src={logo} alt='Askvault logo' width='70' height='70'/>
             {session?.data?.user ?
             <div>
-              <Link href='#' className='profile-link'>
+              <Link href='/profile' className='profile-link'>
                 My Profile
+              </Link>
+              <Link href='/'>
+                <button type='button'
+                className='explore-btn'>
+                  Explore
+                </button>
               </Link>
               <button type='button'
               className='signout-btn'
@@ -31,9 +37,6 @@ const Nav = ()=> {
             </div>
             :
             <div>
-                <button type='button' className='login-btn'>
-                  Login
-                </button>
                 <Link href='/signup'>
                   <button type='button' className='signup-btn'>
                     Sign Up
