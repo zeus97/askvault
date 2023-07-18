@@ -1,0 +1,37 @@
+@mixin gradient-text{
+    background-color: #ff1515;
+    background-image: var(--gradient);
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+
+
+.profile-page{
+    width: 100%;
+    height: 100vh;
+
+    .profile-c{
+        height: 100%;
+        
+
+        .profile-row{
+            height: 100%;
+
+            .profile-column{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                h2{
+                    @include gradient-text
+                }
+            }
+        }
+    }
+}

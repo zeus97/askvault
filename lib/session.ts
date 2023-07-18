@@ -1,12 +1,12 @@
-import { NextAuthOptions } from "next-auth";
-import { getServerSession } from 'next-auth/next';
-import { AdapterUser } from 'next-auth/adapters';
+import { NextAuthOptions, getServerSession } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 import jsonwebtoken from 'jsonwebtoken';
 import { JWT } from 'next-auth/jwt';
 import { connectToDB} from '@/utils/database';
 import User from '@/models/user';
 import { SessionInterface } from "@/interfaces";
+
+
 
 
 export const authOptions:NextAuthOptions = {
@@ -37,11 +37,10 @@ export const authOptions:NextAuthOptions = {
 
             
 
-            const newSession = {
+            const newSession= {
                 ...session,
                 user:sessionUser
             }
-            
     
             return newSession;
         }catch(error){
@@ -49,21 +48,22 @@ export const authOptions:NextAuthOptions = {
             return session;
         }
         },
-        async signIn({profile}){
+        async signIn({user}){
             try{
                 await connectToDB();
                 const userExists = await User.findOne({
-                    email:profile?.email
+                    email:user?.email
                 });
     
                 if(!userExists){
                     await User.create({
-                        email: profile?.email,
-                        username: profile?.name?.replace(" ","").toLowerCase(),
-                        image: profile?.image,
+                        email: user?.email,
+                        name: user?.name?.replace(" ","").toLowerCase(),
+                        image: user?.image,
                         questions:[]
                     })
                 }
+
     
                 return true;
             }catch(error){
@@ -73,3 +73,8 @@ export const authOptions:NextAuthOptions = {
         }
     }
 };
+
+export async function getCurrenUser(){
+    const session = await getServerSession(authOptions) as SessionInterface;
+    return session;
+}
