@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { useSession } from "next-auth/react"
 import '@/styles/Form.scss';
-import { IUser, Question } from '@/interfaces';
+import { IUser, IQuestion } from '@/interfaces';
+import { createQuestion } from '@/utils/services';
 
 
 
@@ -36,7 +37,7 @@ function Form() {
         
     };
 
-    const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         setErrorMessage('');
         const words = dataForm.length;
@@ -48,7 +49,7 @@ function Form() {
         }
         if(userInfo){
             
-            const question:Question = {
+            const question:IQuestion = {
                 creator:{
                    id:userInfo._id,
                    name:userInfo.name || 'Anonymous',
@@ -57,7 +58,9 @@ function Form() {
                  question:dataForm,
                  answers:[]
             };
-            console.log(question);
+           const info = await createQuestion(question);
+           console.log(info)
+           
         }
 
     }

@@ -7,17 +7,17 @@ export interface IUser{
 };
 
   
-export interface Question{
+export interface IQuestion{
     creator:{
       id:string,
       name:string,
       image:string
     },
     question:string,
-    answers:Answer[]
+    answers:IAnswer[]
 };
 
-export interface Answer{
+export interface IAnswer{
   id:string,
   name:string,
   image:string,

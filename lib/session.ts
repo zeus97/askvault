@@ -4,7 +4,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import { JWT } from 'next-auth/jwt';
 import { connectToDB} from '@/utils/database';
 import User from '@/models/user';
-import { SessionInterface } from "@/interfaces";
+
 
 
 
@@ -74,7 +74,4 @@ export const authOptions:NextAuthOptions = {
     }
 };
 
-export async function getCurrenUser(){
-    const session = await getServerSession(authOptions) as SessionInterface;
-    return session;
-}
+
