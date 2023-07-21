@@ -17,7 +17,11 @@ header {
             margin-left: 15px;
         }
 
-        div{
+        .nav-c{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             .profile-link{
                 text-decoration: none;
@@ -43,21 +47,83 @@ header {
                     background-color: #000000;
                     color: #fff;}
             }
-            .signup-btn{
-                background-color: #000;
-                color: #fff;
-
-                &:hover{
-                    background-color: #fff;
-                    color: #000;
-                }
-            }
 
             .explore-btn{
                 border: none;
                 background: var(--gradient);
                 color: #fff;
             }
+
+            .burger-icon{
+                display: none;
+                font-size: 40px;
+                color: #000;
+
+                @media screen and (max-width:768px){
+                    display: block;
+                }
+            }
+
+            .mobile-nav-list{
+                position: absolute;
+                top:80%;
+                right: 20px;
+                background-color: #fff;
+                // display: flex;
+                // flex-direction: column;
+                // justify-content: space-evenly;
+                
+                width: 200px;
+                
+                border-radius: 8px;
+                box-shadow: 2px 2px 3px 3px rgba(177, 177, 177, 0.3);
+
+                a{
+                    text-decoration: none;
+                    text-align: center;
+                    color: #000;
+                    display: block;
+                    height: 40px;
+                    border-bottom: 1px solid #d6d6d6;
+                }
+
+                p{
+                    text-align: center;
+                    height: 40px;
+                    border-bottom: 1px solid #d6d6d6;
+                }
+
+                @media screen and (min-width:768px){
+                    display: none;
+                      
+                }
+                
+            }
         }
+
+        .signup-btn{
+            margin-right: 25px;
+            padding: 5px 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+
+            &:hover{
+                background-color: #fff;
+                color: #000;
+            }
+        }
+
+        
     }
+    
+    @media screen and (max-width:768px){
+        .desktop-nav-list{
+            display: none;
+        }
+          
+    }
+    
 }
+

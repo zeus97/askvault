@@ -1,13 +1,23 @@
 import React from 'react'
 import './page.scss'
 import Image from 'next/image'
+import { getServerSession } from 'next-auth/next'
 
 
 import AuthProviders from '@/components/AuthProviders'
 
-function SignupPage() {
+
+async function  SignupPage() {
+
+  const session = await getServerSession();
+
+  
+  if(session){
+    return <h2 className='logged-in'>You are already logged in.</h2>
+  }
+
   return (
-    <div className='container-fluid signup-page'>
+    <section className='container-fluid signup-page'>
         <div className='row signup-box'>
             <div className='col-6  column-1'>
                 <Image src='/signup-icon.svg' alt='signup icon' width={400} height={400}/>
@@ -19,7 +29,7 @@ function SignupPage() {
                 <AuthProviders />
             </div>
         </div>
-    </div>
+    </section>
   )
 }
 

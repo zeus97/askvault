@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse  } from 'next'
-
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/session";
 import { IQuestion } from '@/interfaces';

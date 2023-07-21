@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react"
 import '@/styles/Form.scss';
 import { IUser, IQuestion } from '@/interfaces';
@@ -15,10 +16,13 @@ function Form() {
     const {data} = useSession();
     const userInfo = data?.user;
 
+    const navigate = useRouter();
+
     
     const [dataForm, setDataForm] = useState<string>('');
     const [countWords, setCountWords] = useState<number>(0);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [errorCreatingQuestion, setErrorCreatingQuestion] = useState<boolean>(false);
     
     
 
@@ -40,7 +44,9 @@ function Form() {
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         setErrorMessage('');
+        setErrorCreatingQuestion(false);
         const words = dataForm.length;
+        
         if(words < 5){
             return;
         }
@@ -58,8 +64,14 @@ function Form() {
                  question:dataForm,
                  answers:[]
             };
-           const info = await createQuestion(question);
-           console.log(info)
+           const response = await createQuestion(question);
+           console.log(response);
+           if(response && response.status === 200){
+            let idQuestion = response.data.questionID
+            navigate.push(`/question?id=${idQuestion}`)
+           }else{
+            setErrorCreatingQuestion(true);
+           }
            
         }
 
@@ -85,6 +97,7 @@ function Form() {
         className='btn btn-primary'>
             Create
         </button>
+        {errorCreatingQuestion && <p style={{color:"#f00000"}}> Something went wrong, try later.</p>}
     </form>
   )
 }

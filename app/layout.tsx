@@ -2,6 +2,7 @@ import './globals.scss'
 import 'bootstrap/dist/css/bootstrap.css'
 
 
+
 import Provider from '@/components/Provider'
 
 export const metadata = {

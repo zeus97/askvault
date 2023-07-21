@@ -8,12 +8,13 @@ import LoadingPage from '@/components/LoadingPage';
 import Nav from '@/components/Nav';
 import Form from '@/components/Form';
 import { IUser } from '@/interfaces';
+import { getProfileQuestions } from '@/utils/services';
 
 
 function Profile() {
 
     const { data: session , status } = useSession();
- 
+    
     
     const router = useRouter();
 
@@ -24,6 +25,16 @@ function Profile() {
     if (status === "unauthenticated") {
         return router.push('/')
       }
+
+    if(session){
+      const getQuestions = async ()=>{
+        const userInfo = session.user
+        const userID = userInfo._id;
+        const res = await getProfileQuestions(userID)
+        console.log(res);
+      }
+      getQuestions();
+    }
       
     
 
@@ -33,13 +44,13 @@ function Profile() {
         <Nav />
         <div className='container profile-c'>
           <div className='row profile-row'>
-            <div className='col-6 profile-column'>
+            <div className='col-md-12 col-lg-6 profile-column'>
               <h2>Your questions</h2>
               <div>
 
               </div>
             </div>
-            <div className='col-6 profile-column'>
+            <div className='col-md-12 col-lg-6  profile-column'>
               <h2>Ask something</h2>
                <Form /> 
             </div>
