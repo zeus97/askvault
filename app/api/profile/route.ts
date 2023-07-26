@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/session";
 import { connectToDB } from "@/utils/database";
 import User from "@/models/user";
-import { IUser } from "@/interfaces";
+import { IQuestion, IUser } from "@/interfaces";
 import Question from "@/models/question";
 
 
@@ -27,12 +27,22 @@ export async function GET(req:NextRequest,res:NextResponse){
     
                     const userInfo = await User.findById(userID);
                     const questionsID = userInfo.questions;
+                    let questions:IQuestion[] = [];
                     
-                    const questions = await Question.find({
+                    const response = await Question.find({
                         "_id":{
                             $in:questionsID
                         }
-                    })
+                    });
+                    
+                    for (let q of response){
+                        questions.push({
+                            id: q._id.toString(),
+                            creator: q.creator,
+                            question: q.question,
+                            answers: q.answers
+                        })
+                    }
                     
                     return new Response(JSON.stringify(questions),{status:200})
                 }catch(error){

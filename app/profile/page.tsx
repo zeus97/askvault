@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import './page.scss';
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/navigation'
@@ -7,16 +7,16 @@ import { useRouter } from 'next/navigation'
 import LoadingPage from '@/components/LoadingPage';
 import Nav from '@/components/Nav';
 import Form from '@/components/Form';
-import { IUser } from '@/interfaces';
-import { getProfileQuestions } from '@/utils/services';
+import ProfileQuestionContainer from '@/components/ProfileQuestionContainer';
 
 
 function Profile() {
 
-    const { data: session , status } = useSession();
-    
+    const { status } = useSession();
+
     
     const router = useRouter();
+    
 
     if (status === "loading") {
         return <LoadingPage />
@@ -26,15 +26,7 @@ function Profile() {
         return router.push('/')
       }
 
-    if(session){
-      const getQuestions = async ()=>{
-        const userInfo = session.user
-        const userID = userInfo._id;
-        const res = await getProfileQuestions(userID)
-        console.log(res);
-      }
-      getQuestions();
-    }
+
       
     
 
@@ -46,10 +38,9 @@ function Profile() {
           <div className='row profile-row'>
             <div className='col-md-12 col-lg-6 profile-column'>
               <h2>Your questions</h2>
-              <div>
-
-              </div>
+              <ProfileQuestionContainer />
             </div>
+
             <div className='col-md-12 col-lg-6  profile-column'>
               <h2>Ask something</h2>
                <Form /> 

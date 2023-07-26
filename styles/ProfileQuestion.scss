@@ -1,0 +1,43 @@
+.profile-question{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 5px;
+
+    &:hover{
+        
+        box-shadow: 2px 2px 3px 3px rgba(177, 177, 177, 0.3); 
+
+    }
+
+    p{
+        background-color: #ff1515;
+        background-image: var(--gradient);
+        background-size: 100%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+        width: 50%;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+
+    i{
+        font-size: 30px;
+        cursor: pointer;
+
+        &:hover{
+            color: var(--color-red);
+        }
+
+    }
+}

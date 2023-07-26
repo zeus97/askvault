@@ -6,7 +6,6 @@ function QuestionPage() {
 
     const params = useSearchParams();
     const id = params.get("id");
-    console.log(id);
 
   return (
     <section>

@@ -8,6 +8,7 @@ export interface IUser{
 
   
 export interface IQuestion{
+    id:string,
     creator:{
       id:string,
       name:string,
