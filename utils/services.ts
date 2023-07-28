@@ -21,3 +21,14 @@ try{
     console.log(`[Error obtaining profile data]:${error}`)
 }
 };
+
+export const deleteQuestionByID = async (id:string)=>{
+    try{
+        const res = await axios.delete(`/api/questions/delete?id=${id}`);
+
+        return res;
+        
+    }catch(error){
+        console.log(`[Error deleting question ]:${error}`)
+    }
+}

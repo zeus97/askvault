@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react"
 import { useRouter } from 'next/navigation'
 //components
 import LoadingPage from '@/components/LoadingPage';
-import Nav from '@/components/Nav';
+
 import Form from '@/components/Form';
 import ProfileQuestionContainer from '@/components/ProfileQuestionContainer';
 
@@ -33,7 +33,6 @@ function Profile() {
 
   return (
     <section className='profile-page'>
-        <Nav />
         <div className='container profile-c'>
           <div className='row profile-row'>
             <div className='col-md-12 col-lg-6 profile-column'>

@@ -4,10 +4,11 @@ import '@/styles/ProfileQuestion.scss';
 
 interface Props{
     question: string,
-    id:string
+    id:string,
+    deleteQuestion: (id:string) => void
 }
 
-function ProfileQuestion({question,id}:Props) {
+function ProfileQuestion({question,id,deleteQuestion}:Props) {
 
     const navigate = useRouter();
 
@@ -15,7 +16,7 @@ function ProfileQuestion({question,id}:Props) {
     <div className='profile-question'>
         <p onClick={()=>{navigate.push(`/question?id=${id}`)}}>{question}</p>
         <i className="bi bi-trash"
-        onClick={()=>{confirm('Do you want to delete the question?')}}></i>
+        onClick={()=>{deleteQuestion(id)}}></i>
     </div>
   )
 }

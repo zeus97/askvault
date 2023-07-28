@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 
 import Provider from '@/components/Provider'
+import Nav from '@/components/Nav'
 
 export const metadata = {
   title: 'AskVault',
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
+          <Nav />
           <main>
             {children}
           </main>
