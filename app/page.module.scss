@@ -1,10 +1,6 @@
 .home{
     position: relative;
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
 
     .filterA{
         position: absolute;
@@ -28,13 +24,12 @@
         filter: blur(150px);
     }
     .container{
+        position: relative;
+        overflow: hidden;
         width: 100%;
-        max-width: 900px;
-        height: max-content;
-        margin-top: 170px;
+        height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
         .title{
@@ -44,6 +39,7 @@
             width: 100%;
             max-width: 900px;
             text-align: center;
+            margin-top: 170px;
             
     
             span{

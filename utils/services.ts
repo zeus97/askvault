@@ -12,6 +12,17 @@ export const createQuestion = async (question:IQuestion)=>{
     }
 };
 
+export const getAllQuestions = async ()=>{
+    try{
+        const res = await axios.get("/api/questions")
+
+        return res;
+
+    }catch(error){
+        console.log(`[Error obtaining questions]:${error}`)
+    }
+}
+
 export const getProfileQuestions = async (id:string)=>{
 try{
     const res = await axios.get(`/api/profile?id=${id}`);
