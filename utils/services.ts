@@ -42,4 +42,15 @@ export const deleteQuestionByID = async (id:string)=>{
     }catch(error){
         console.log(`[Error deleting question ]:${error}`)
     }
+};
+
+export const getQuestionByID = async (id:string)=>{
+    try{
+        const res = await axios.get(`/api/questions?id=${id}`);
+
+        return res;
+        
+    }catch(error){
+        console.log(`[Error obtaining question by ID ]:${error}`)
+    }
 }

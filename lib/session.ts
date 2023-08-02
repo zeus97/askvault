@@ -58,8 +58,8 @@ export const authOptions:NextAuthOptions = {
                 if(!userExists){
                     await User.create({
                         email: user?.email,
-                        name: user?.name?.replace(" ","").toLowerCase(),
-                        image: user?.image,
+                        name: user?.name?.replace(" ","").toLowerCase() || "Anonymous",
+                        image: user?.image || "/user-default.svg",
                         questions:[]
                     })
                 }
