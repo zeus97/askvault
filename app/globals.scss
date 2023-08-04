@@ -10,12 +10,4 @@
 :root{
   --gradient: linear-gradient(90deg, rgba(255,21,21,1) 0%, rgba(249,24,255,1) 100%);
   --color-red: #f00000;
-  --text-gradient: {background-color: #ff1515;
-    background-image: var(--gradient);
-    background-size: 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;};
 }

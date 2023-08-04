@@ -1,5 +1,5 @@
 "use client"
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import '@/styles/Nav.scss';
 import Image from 'next/image';
@@ -15,10 +15,23 @@ const Nav = ()=> {
   const {data} = useSession();
 
   const [showList, setShowList] = useState<boolean>(false);
+  const [navAnimation, setNavAnimation] = useState<boolean>(false);
+
+  const scrollAnimation = ()=>{
+    if(window.scrollY >= 100){
+      setNavAnimation(true);
+    }else{setNavAnimation(false);}
+  };
+
+  useEffect(()=>{
+    window.addEventListener("scroll",scrollAnimation)
+
+    return ()=> window.removeEventListener("scroll",scrollAnimation)
+  },[])
 
 
   return (
-    <header>
+    <header className={navAnimation ? "nav-animation" : undefined}>
         <nav>
             <Image src={logo} alt='Askvault logo' width='70' height='70'/>
             {data?.user ?

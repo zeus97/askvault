@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IQuestion } from "@/interfaces";
 
-export const createQuestion = async (question:IQuestion)=>{
+export const createQuestion = async (question:any)=>{
     try{
         const res = await axios.post('/api/profile/create',question,{headers:{'Content-Type':'application/json'}});
         
@@ -52,5 +52,16 @@ export const getQuestionByID = async (id:string)=>{
         
     }catch(error){
         console.log(`[Error obtaining question by ID ]:${error}`)
+    }
+};
+
+export const createAnswer = async (answer:any)=>{
+    try{
+        const res = await axios.post('/api/answer',answer,{headers:{'Content-Type':'application/json'}});
+        
+        return res;
+
+    }catch(error){
+        console.log(`[Error creating answer]:${error}`)
     }
 }

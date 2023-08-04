@@ -1,27 +1,23 @@
 "use client"
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react"
-import '@/styles/Form.scss';
-import { createQuestion } from '@/utils/services';
+import '@/styles/AnswerForm.scss';
+import { createAnswer } from '@/utils/services';
 
 
+interface Props{
+    id:string
+}
 
-
-
-
-function Form() {
-
+function AnswerForm({id}:Props) {
     const {data} = useSession();
     const userInfo = data?.user;
-
-    const navigate = useRouter();
-
     
     const [dataForm, setDataForm] = useState<string>('');
     const [countWords, setCountWords] = useState<number>(0);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [errorCreatingQuestion, setErrorCreatingQuestion] = useState<boolean>(false);
+    const [loadingButton, setLoadingButton] = useState<boolean>(false);
     
     
 
@@ -32,9 +28,9 @@ function Form() {
         const words = e.target.value.length;
         setCountWords(words);
         if(words < 5){
-            setErrorMessage('The question is too short.');
+            setErrorMessage('The answer is too short.');
         }else if(words >= 100){
-            setErrorMessage('The question is too long.');
+            setErrorMessage('The answer is too long.');
         }else{setErrorMessage('');}
         
         
@@ -54,36 +50,37 @@ function Form() {
         }
         if(userInfo){
             
-            const question = {
-                creator:{
-                   id:userInfo._id.toString(),
-                   name:userInfo.name || 'Anonymous',
-                   image:userInfo.image || '/user-default.svg'
-                 },
-                 question:dataForm,
-                 answers:[]
+            const answer = {
+                id:userInfo._id.toString(),
+                questionID: id,
+                name:userInfo.name,
+                image:userInfo.image,
+                answer:dataForm,
             };
-           const response = await createQuestion(question);
-           console.log(response);
-           if(response && response.status === 200){
-            let idQuestion = response.data.questionID
-            navigate.push(`/question?id=${idQuestion}`)
-           }else{
+            setLoadingButton(true);
+            const response = await createAnswer(answer);
+            setLoadingButton(false);
+            if(response && response.status === 200){
+                setDataForm("");
+                alert("Answer created")
+            
+            }else{
             setErrorCreatingQuestion(true);
-           }
+            }
            
-        }
+         }
 
     }
 
   return (
-    <form className='ask-form'
+    <form className='answer-form'
     onSubmit={handleSubmit}>
-        <textarea id='question-area'
-         placeholder='example: How do you define success in life?...'
-         onChange={handleChange}>
+        <textarea id='answer-area'
+         placeholder='Answer this question.'
+         onChange={handleChange}
+         value={dataForm}>
          </textarea>
-         <div className='ask-form-info'>
+         <div className='answer-form-info'>
             <span className='error-msg'>
                 {errorMessage}
             </span>
@@ -92,13 +89,19 @@ function Form() {
                 {`${countWords}/100`}
             </span>
          </div>
+        {countWords > 5 && countWords < 100 &&
         <button type='submit'
         className='btn btn-primary'>
-            Create
-        </button>
+            {loadingButton ?
+            <div className="spinner-border spinner-border-sm text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+            :
+            "Created"}
+        </button>}
         {errorCreatingQuestion && <p style={{color:"#f00000"}}> Something went wrong, try later.</p>}
     </form>
   )
 }
 
-export default Form
+export default AnswerForm
