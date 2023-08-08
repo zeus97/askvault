@@ -31,6 +31,14 @@ header {
                 &:hover{
                     color: #ffffff;
                 }
+
+                .user-image{
+                    border-radius: 50%;
+
+                    &:hover{
+                        outline: 2px solid #000;
+                    }
+                }
             }
 
             button{
@@ -52,6 +60,10 @@ header {
                 border: none;
                 background: var(--gradient);
                 color: #fff;
+
+                &:hover{
+                    color: #000;
+                }
             }
 
             .burger-icon{
@@ -123,8 +135,8 @@ header {
 }
 
 .nav-animation{
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
     border-bottom: 1px solid #cacaca;
 }
 

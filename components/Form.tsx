@@ -20,6 +20,7 @@ function Form() {
     
     const [dataForm, setDataForm] = useState<string>('');
     const [countWords, setCountWords] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [errorCreatingQuestion, setErrorCreatingQuestion] = useState<boolean>(false);
     
@@ -63,8 +64,9 @@ function Form() {
                  question:dataForm,
                  answers:[]
             };
+            setIsLoading(true);
            const response = await createQuestion(question);
-           console.log(response);
+           setIsLoading(false);
            if(response && response.status === 200){
             let idQuestion = response.data.questionID
             navigate.push(`/question?id=${idQuestion}`)
@@ -94,7 +96,17 @@ function Form() {
          </div>
         <button type='submit'
         className='btn btn-primary'>
-            Create
+            {isLoading ?
+                <div className="spinner-border spinner-border-sm text-light" role="status">
+                    <span className="visually-hidden">
+                        Loading...
+                    </span>
+                </div>
+            :
+                "Create"
+
+            }
+            
         </button>
         {errorCreatingQuestion && <p style={{color:"#f00000"}}> Something went wrong, try later.</p>}
     </form>

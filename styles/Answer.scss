@@ -1,0 +1,19 @@
+.answer-box{
+
+    .answer-info{
+        display: flex;
+
+        img{
+            border-radius: 50%;
+        }
+        p{
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+    }
+    .answer{
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+}

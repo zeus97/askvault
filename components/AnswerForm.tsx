@@ -97,7 +97,7 @@ function AnswerForm({id}:Props) {
                 <span className="visually-hidden">Loading...</span>
             </div>
             :
-            "Created"}
+            "Submit"}
         </button>}
         {errorCreatingQuestion && <p style={{color:"#f00000"}}> Something went wrong, try later.</p>}
     </form>

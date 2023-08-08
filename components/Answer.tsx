@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from "next/image"
+import "@/styles/Answer.scss"
 
 interface Props{
     image:string,
@@ -9,12 +10,12 @@ interface Props{
 
 function Answer({image,name,answer}:Props) {
   return (
-    <div>
-        <div>
-        <Image src={image} alt={name} width={30} height={30}/>
-        <p>{name}</p>
+    <div className='answer-box'>
+        <div className='answer-info'>
+          <Image src={image} alt={name} width={30} height={30}/>
+          <p>{name}</p>
         </div>
-        <p>{answer}</p>
+        <p className='answer'>{answer}</p>
     </div>
   )
 }

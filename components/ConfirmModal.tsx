@@ -2,11 +2,12 @@ import React from 'react';
 import '@/styles/ConfirmModal.scss';
 
 interface Props{
+    isLoading:boolean,
     closeModal: () => void,
     deleteQuestionConfirm: ()=> void
 }
 
-function ConfirmModal({closeModal,deleteQuestionConfirm}:Props) {
+function ConfirmModal({isLoading,closeModal,deleteQuestionConfirm}:Props) {
   return (
     <div className='confirm-modal-c'>
         <div className='confirm-modal'>
@@ -21,7 +22,17 @@ function ConfirmModal({closeModal,deleteQuestionConfirm}:Props) {
                 <button type='button'
                  className='btn btn-danger'
                  onClick={deleteQuestionConfirm}>
-                    Delete
+                    {isLoading ?
+                        <div className="spinner-border spinner-border-sm text-light" role="status">
+                            <span className="visually-hidden">
+                                Loading...
+                            </span>
+                        </div>
+                        :
+                        "Delete"
+
+                    }
+                    
                 </button>
             </div>
         </div>

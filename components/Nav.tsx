@@ -33,12 +33,18 @@ const Nav = ()=> {
   return (
     <header className={navAnimation ? "nav-animation" : undefined}>
         <nav>
-            <Image src={logo} alt='Askvault logo' width='70' height='70'/>
+            <Link href="/">
+              <Image src={logo} alt='Askvault logo' width='70' height='70'/>
+            </Link>
             {data?.user ?
             <div className='nav-c'>
               <div className='desktop-nav-list'>
                 <Link href='/profile' className='profile-link'>
-                  My Profile
+                  <Image src={data.user.image || "/user-default.svg"}
+                  alt='user-image'
+                  width={50}
+                  height={50}
+                  className='user-image'/>
                 </Link>
                 <Link href='/'>
                   <button type='button'

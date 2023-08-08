@@ -5,7 +5,7 @@
 
     &:hover{
         border-radius: 8px;
-        background-color: #ffd9e4;
+        background-color: var(--hover-question);
         box-shadow: 2px 2px 3px 3px rgba(177, 177, 177, 0.3);
     }
 

@@ -26,16 +26,13 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                height: 100%;
 
                 h2{
                     @include gradient-text
                 }
 
-                .profile-questions-c{
-                    margin-top: 100px;
-                    width: 100%;
-                    padding: 5px;
-                }
+                
             }
         }
     }

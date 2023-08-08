@@ -1,4 +1,5 @@
 import React from 'react'
+import "@/styles/Pagination.scss"
 
 interface Props{
     paginationLength:number,
