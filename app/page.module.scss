@@ -1,16 +1,18 @@
 .home{
     position: relative;
     width: 100%;
+    background:linear-gradient(#ffe5f5,#ffffff);
+
 
     .filterA{
         position: absolute;
         width: 350px;
         height: 45px;
         border-radius: 50%;
-        background-color: #fa5fff;
+        background-color: #e45fff;
         top: 30%;
         left: 40%;
-        filter: blur(100px);
+        filter: blur(70px);
     }
 
     .filterB{
@@ -20,8 +22,8 @@
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        background: #fa5fff;
-        filter: blur(150px);
+        background: #e45fff;
+        filter: blur(100px);
     }
     .container{
         position: relative;

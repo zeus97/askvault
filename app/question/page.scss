@@ -6,7 +6,6 @@
         margin-top: 70px;
         display: flex;
         flex-direction: column;
-        
 
         .question-page-q{
 
@@ -38,6 +37,10 @@
         }
         .answers-c{
             margin-top: 20px;
+            height: 950px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     }
 }

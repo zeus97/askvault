@@ -6,8 +6,8 @@ import ProfileQuestion from './ProfileQuestion';
 import { useSession } from 'next-auth/react';
 import { deleteQuestionByID, getProfileQuestions } from '@/utils/services';
 import ConfirmModal from './ConfirmModal';
-import Pagination from './Pagination';
 import "@/styles/ProfileQuestionContainer.scss";
+import PaginationComponent from './PaginationComponent';
 
 function ProfileQuestionContainer() {
 
@@ -65,28 +65,11 @@ function ProfileQuestionContainer() {
     }
 
     //Pagination
-    const itemsLength = questions.length;
-    const maxItems: number = 10;
-    const paginationLength = Math.ceil(itemsLength / maxItems)
-    const maxRange = (currentPage * maxItems ) - 1;
-    const minRange = (maxRange - maxItems ) + 1;
-    const questionsInPage = questions.slice(minRange,maxRange + 1);
+    let PageSize = 10;
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    const questionsInPage = questions.slice(firstPageIndex, lastPageIndex);
 
-    const previousPage = ()=>{
-      if(currentPage > 1){
-          setCurrentPage((page)=>page - 1);
-      }
-    };
-
-    const nextPage = ()=>{
-      if(currentPage < paginationLength){
-          setCurrentPage((page)=>page + 1);
-      }
-    };
-
-    const setPage = (page:number)=>{
-      setCurrentPage(page);
-    };
 
     
 
@@ -98,26 +81,30 @@ function ProfileQuestionContainer() {
 
       <div className='profile-questions-c'>
           {questions.length < 1 ?
-          <h3>You don't have questions</h3>
+          <h3 className='text-center'>You don't have questions</h3>
           :
           <div className='profile-questions'>
-            {
-              questionsInPage.map((q,i)=>{
-                  return (
-                      <ProfileQuestion question={q.question}
-                      id={q.id}
-                      deleteQuestion={deleteQuestion}
-                      key={i} />
-                  )
-              })
+            <div>
+              {
+                questionsInPage.map((q,i)=>{
+                    return (
+                        <ProfileQuestion question={q.question}
+                        id={q.id}
+                        deleteQuestion={deleteQuestion}
+                        key={i} />
+                    )
+                })
 
-            }
-            <Pagination
+              }
+            </div>
+            
+            <PaginationComponent
+            className="pagination-bar"
             currentPage={currentPage}
-            paginationLength={paginationLength}
-            nextPage={nextPage}
-            previousPage={previousPage}
-            setPage={setPage} />
+            totalCount={questions.length}
+            siblingCount={1}
+            pageSize={PageSize}
+            onPageChange={page => setCurrentPage(page)} />
           </div>
       }
       </div>

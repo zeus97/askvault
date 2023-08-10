@@ -25,8 +25,7 @@ export default function Home() {
           </a>
       </div>
 
-      <div style={{position:"relative"}}>
-        <div id='explore' style={{position:"absolute", top:"0"}}></div>
+      <div id='explore' style={{border:"1px solid transparent"}}>
         <QuestionContainer />
       </div>
     </section>

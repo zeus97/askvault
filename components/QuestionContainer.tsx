@@ -4,7 +4,7 @@ import { IQuestion } from '@/interfaces';
 import { getAllQuestions } from '@/utils/services';
 import Question from './Question';
 import '@/styles/QuestionContainer.scss';
-import Pagination from './Pagination';
+import PaginationComponent from './PaginationComponent';
 
 const QuestionContainer = () => {
 
@@ -17,28 +17,11 @@ const QuestionContainer = () => {
     },[])
 
     //Pagination
-    const itemsLength = questions.length;
-    const maxItems: number = 10;
-    const paginationLength = Math.ceil(itemsLength / maxItems)
-    const maxRange = (currentPage * maxItems ) - 1;
-    const minRange = (maxRange - maxItems ) + 1;
-    const questionsInPage = questions.slice(minRange,maxRange + 1);
-
-    const previousPage = ()=>{
-        if(currentPage > 1){
-            setCurrentPage((page)=>page - 1);
-        }
-    };
-
-    const nextPage = ()=>{
-        if(currentPage < paginationLength){
-            setCurrentPage((page)=>page + 1);
-        }
-    };
-
-    const setPage = (page:number)=>{
-        setCurrentPage(page);
-    };
+    
+    let PageSize = 7;
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    const questionsInPage = questions.slice(firstPageIndex, lastPageIndex);
 
 
          
@@ -47,22 +30,26 @@ const QuestionContainer = () => {
 
   return (
     <div className='container questions-c'>
-        {questionsInPage.map((q,i)=>{
-            return (
-                <Question
-                name={q.creator.name}
-                picture={q.creator.image}
-                question={q.question}
-                id={q.id}
-                key={i} />
-            )
-        })}
-        <Pagination
-        paginationLength={paginationLength}
-        currentPage={currentPage}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        setPage={setPage} />
+        <div>
+            {questionsInPage.map((q,i)=>{
+                return (
+                    <Question
+                    name={q.creator.name}
+                    picture={q.creator.image}
+                    question={q.question}
+                    id={q.id}
+                    key={i} />
+                )
+            })}
+        </div>
+
+        <PaginationComponent
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={questions.length}
+            siblingCount={1}
+            pageSize={PageSize}
+            onPageChange={page => setCurrentPage(page)} />
 
     </div>
   )

@@ -1,21 +1,24 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import './page.scss'
 import { getQuestionByID } from '@/utils/services'
-import { IQuestion } from '@/interfaces'
+import { IAnswer, IQuestion } from '@/interfaces'
 import LoadingPage from '@/components/LoadingPage'
 import AnswerForm from '@/components/AnswerForm'
 import Answer from '@/components/Answer'
 import { useSession } from 'next-auth/react'
+import PaginationComponent from '@/components/PaginationComponent'
 
 function QuestionPage() {
 
   const session = useSession();
   const [questionData, setQuestionData] = useState<IQuestion | null>(null);
   const [error, setError] = useState<boolean>(false);
+
   const params = useSearchParams();
+  
 
 
   const fetchingQuestion = async (id:string )=>{
@@ -35,6 +38,19 @@ function QuestionPage() {
       }
 
     },[])
+
+    //Pagination
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    let PageSize = 10;
+    let answersPerPage:IAnswer[] = [];
+
+    if(questionData){
+
+      const firstPageIndex = (currentPage - 1) * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+      answersPerPage = questionData.answers.slice(firstPageIndex, lastPageIndex);
+    }
+  
 
     if(error){
       return (
@@ -64,21 +80,35 @@ function QuestionPage() {
           </div>
           {session.data &&
           <AnswerForm
-          id={questionData.id} />
+          id={questionData.id}
+          fetchingQuestion={fetchingQuestion} />
           }
 
           <div className='answers-c'>
-            {questionData.answers.map((a,i)=>{
-              return(
-                <Answer
-                image={a.image}
-                name={a.name}
-                answer={a.answer}
-                key={i} />  
-              )
-            })
+            <div>
+              {answersPerPage.length < 1 ? 
+              <p>No answers yet...</p>
+              :
+              answersPerPage.map((a,i)=>{
+                return(
+                  <Answer
+                  image={a.image}
+                  name={a.name}
+                  answer={a.answer}
+                  key={i} />  
+                )
+              })
+              
+              }
+            </div>
             
-            }
+            <PaginationComponent
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={questionData.answers.length}
+            siblingCount={1}
+            pageSize={PageSize}
+            onPageChange={page => setCurrentPage(page)} />
           </div>
         </div>
       }

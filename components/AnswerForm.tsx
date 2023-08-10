@@ -6,10 +6,11 @@ import { createAnswer } from '@/utils/services';
 
 
 interface Props{
-    id:string
+    id:string,
+    fetchingQuestion: (id:string) => void
 }
 
-function AnswerForm({id}:Props) {
+function AnswerForm({id,fetchingQuestion}:Props) {
     const {data} = useSession();
     const userInfo = data?.user;
     
@@ -29,7 +30,7 @@ function AnswerForm({id}:Props) {
         setCountWords(words);
         if(words < 5){
             setErrorMessage('The answer is too short.');
-        }else if(words >= 100){
+        }else if(words > 250){
             setErrorMessage('The answer is too long.');
         }else{setErrorMessage('');}
         
@@ -45,7 +46,7 @@ function AnswerForm({id}:Props) {
         if(words < 5){
             return;
         }
-        if(words >= 100){
+        if(words > 250){
             return;
         }
         if(userInfo){
@@ -62,7 +63,8 @@ function AnswerForm({id}:Props) {
             setLoadingButton(false);
             if(response && response.status === 200){
                 setDataForm("");
-                alert("Answer created")
+                alert("Answer created");
+                fetchingQuestion(id);
             
             }else{
             setErrorCreatingQuestion(true);
@@ -85,11 +87,11 @@ function AnswerForm({id}:Props) {
                 {errorMessage}
             </span>
             <span className='counter-words'
-            style={countWords >= 100 ? {color:'#f00000'} : undefined}>
-                {`${countWords}/100`}
+            style={countWords > 250 ? {color:'#f00000'} : undefined}>
+                {`${countWords}/250`}
             </span>
          </div>
-        {countWords > 5 && countWords < 100 &&
+        {countWords > 5 && countWords <= 250 &&
         <button type='submit'
         className='btn btn-primary'>
             {loadingButton ?

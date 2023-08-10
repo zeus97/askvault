@@ -12,12 +12,12 @@ export async function POST(req:NextRequest,res:NextResponse){
             const { id, questionID, answer } = body;
             if(id && questionID && answer){
                 const question = await Question.findById(questionID);
-                const questionAnswers:any[] = question.answers;
-                if(questionAnswers.some((e)=> e.id === id)){
-                    console.log("You already answer this question");
-                    return new Response("You already answer this question",{status:400})
-                }
-                if(answer.length > 5 && answer.length < 100){
+                // const questionAnswers:any[] = question.answers;
+                // if(questionAnswers.some((e)=> e.id === id)){
+                //     console.log("You already answer this question");
+                //     return new Response("You already answer this question",{status:400})
+                // }
+                if(answer.length > 5 && answer.length <= 250){
                     await Question.findOneAndUpdate({"_id":questionID},{$push:{"answers":body}});
                     console.log("Answer created");
                     return new Response("Answer created",{status:200})    

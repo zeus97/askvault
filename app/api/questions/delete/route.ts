@@ -17,6 +17,7 @@ export async function DELETE(req:NextRequest,res:NextResponse){
                 let creator = questionToDelete.creator.id;
                 if(creator === userID){
                     await Question.findByIdAndDelete(questionID);
+                    console.log("Question deleted");
                     return new Response(JSON.stringify({message:"Question deleted"}),{status:200})
                 }else{
                     console.log("Not authorized to delete this question");
