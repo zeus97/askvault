@@ -23,6 +23,10 @@ const Nav = ()=> {
     }else{setNavAnimation(false);}
   };
 
+  const showMobileList = ()=>{
+    setShowList((s)=>!s);
+  };
+
   useEffect(()=>{
     window.addEventListener("scroll",scrollAnimation)
 
@@ -59,12 +63,20 @@ const Nav = ()=> {
                 </button>
               </div>
               <i className="bi bi-list burger-icon"
-              onClick={()=>{setShowList((s)=>!s)}}></i>
-              {showList && <div className='mobile-nav-list'>
-                <Link href='/profile'>My profile</Link>
-                <Link href='/'>Explore</Link>
-                <p onClick={()=>{signOut()}}>Sign Out</p>
-              </div>}
+              onClick={showMobileList}></i>
+              {showList &&
+                <div className='mobile-nav-list'>
+                  <Link href='/profile'
+                  onClick={showMobileList}>
+                    My profile
+                  </Link>
+                  <Link href='/'
+                  onClick={showMobileList}>
+                    Explore
+                  </Link>
+                  <p onClick={()=>{signOut()}}>Sign Out</p>
+                </div>
+              }
             </div>
             :
             <div>

@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+main{
+  width: 100%;
+}
+
+
 :root{
   --gradient: linear-gradient(90deg, rgba(255,21,21,1) 0%, rgba(249,24,255,1) 100%);
   --color-red: #ff1515;
