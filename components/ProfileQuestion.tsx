@@ -14,7 +14,10 @@ function ProfileQuestion({question,id,deleteQuestion}:Props) {
 
   return (
     <div className='profile-question'>
-        <p onClick={()=>{navigate.push(`/question?id=${id}`)}}>{question}</p>
+        <p title={question} 
+        onClick={()=>{navigate.push(`/question?id=${id}`)}}>
+          {question}
+        </p>
         <i className="bi bi-trash"
         onClick={()=>{deleteQuestion(id)}}></i>
     </div>

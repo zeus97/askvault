@@ -1,0 +1,33 @@
+@mixin text-color{
+    
+    background-image: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+.terms-page{
+    width: 100%;
+    margin-top:100px;
+    padding: 10px;
+
+    .terms-title{
+        text-align: center;
+        @include text-color;
+    }
+    .terms-c{
+        .term-name{
+            @include text-color;
+        }
+        .term-text{
+            font-weight: bold;
+        }
+        .terms-agree{
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: underline;
+        }
+    }
+}

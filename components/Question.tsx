@@ -22,7 +22,10 @@ function Question({picture,name,question,id}:Props) {
             <p className='question-name'>{name}</p>
         </div>
         <p className='question'
-        onClick={()=>{router.push(`/question?id=${id}`)}}>{question}</p>
+        title={question}
+        onClick={()=>{router.push(`/question?id=${id}`)}}>
+          {question}
+        </p>
     </div>
   )
 }

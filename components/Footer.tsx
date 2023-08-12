@@ -1,5 +1,7 @@
 import React from 'react';
 import '@/styles/Footer.scss';
+import { ABOUTUS, SOCIALMEDIA, SUPPORT } from '@/utils/constants';
+import Link from 'next/link';
 
 function Footer() {
 
@@ -10,19 +12,43 @@ function Footer() {
     <footer className='container-fluid footer'>
       <div className='row row-1'>
         <div className='col-4 footer-col'>
-          <p>About Us</p>
-          <a href='#'>Developer</a>
-          <a>Company</a>
+          <p>{ABOUTUS.title}</p>
+          {ABOUTUS.links.map((link,i)=>{
+            return (
+              <Link href={link.url}
+               key={i}
+               target='_blank'>
+                {link.name}
+              </Link>
+            )
+          })}
         </div>
         <div className='col-4 footer-col'>
-          <p>Support</p>
-          <a>Contact</a>
-          <a>Usage Policy</a>
+          <p>{SUPPORT.title}</p>
+          {SUPPORT.links.map((link,i)=>{
+            return(
+              <Link href={link.url}
+               key={i}>
+                {link.name}
+              </Link>
+            )
+          })
+
+          }
         </div>
         <div className='col-4 footer-col'>
-          <p>Social Media</p>
-          <a>Linkedin</a>
-          <a>GitHub</a>
+          <p>{SOCIALMEDIA.title}</p>
+          {SOCIALMEDIA.links.map((link,i)=>{
+            return(
+              <Link href={link.url}
+               key={i}
+               target='_blank'>
+                {link.name}
+              </Link>
+            )
+          })
+
+          }
         </div>
       </div>
       <div className='row row-2'>
