@@ -13,6 +13,10 @@ header {
         justify-content: space-between;
         align-items: center;
 
+        .logo-t{
+            font-family: 'Roboto Slab', serif;
+        }
+
         img{
             margin-left: 15px;
         }
@@ -28,15 +32,18 @@ header {
                 margin-right: 15px;
                 font-size: 1.2rem;
                 color: #000;
+                transition: all 0.3s linear;
+
                 &:hover{
                     color: #ffffff;
                 }
 
                 .user-image{
                     border-radius: 50%;
+                    transition: all 0.3s linear;
 
                     &:hover{
-                        outline: 2px solid #000;
+                        transform: scale(110%);
                     }
                 }
             }
@@ -50,6 +57,7 @@ header {
 
             .signout-btn{
                 background-color: #fff;
+                transition: all 0.3s linear;
 
                 &:hover{
                     background-color: #000000;
@@ -60,6 +68,7 @@ header {
                 border: none;
                 background: var(--gradient);
                 color: #fff;
+                transition: all 0.3s linear;
 
                 &:hover{
                     color: #000;
@@ -115,6 +124,7 @@ header {
             border-radius: 5px;
             background-color: #000;
             color: #fff;
+            transition: all 0.3s linear;
 
             &:hover{
                 background-color: #fff;

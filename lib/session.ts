@@ -1,7 +1,5 @@
-import { NextAuthOptions, getServerSession } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
-import jsonwebtoken from 'jsonwebtoken';
-import { JWT } from 'next-auth/jwt';
 import { connectToDB} from '@/utils/database';
 import User from '@/models/user';
 
@@ -16,14 +14,6 @@ export const authOptions:NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         })
     ],
-    // jwt:{
-    //     encode: ({secret, token})=>{
-
-    //     },
-    //     decode: ({secret, token})=>{
-
-    //     }
-    // },
     theme:{
         colorScheme:'light',
         

@@ -1,3 +1,4 @@
+import { IAnswer } from "@/interfaces";
 import { authOptions } from "@/lib/session";
 import Question from "@/models/question";
 import { getServerSession } from "next-auth";
@@ -12,7 +13,7 @@ export async function POST(req:NextRequest,res:NextResponse){
             const { id, questionID, answer } = body;
             if(id && questionID && answer){
                 const question = await Question.findById(questionID);
-                const questionAnswers:any[] = question.answers;
+                const questionAnswers:IAnswer[] = question.answers;
                 if(questionAnswers.some((e)=> e.id === id)){
                 console.log("You already answer this question");
                 return new Response("You already answer this question",{status:400})

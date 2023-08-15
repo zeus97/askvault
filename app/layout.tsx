@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 
 export const metadata = {
   title: 'AskVault',
-  description: 'Q & A app for developers',
+  description: 'An app for questions & answers',
 }
 
 export default function RootLayout({

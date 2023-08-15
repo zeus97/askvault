@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/session";
 import { connectToDB } from "@/utils/database";
 import User from "@/models/user";
-import { IQuestion, IUser } from "@/interfaces";
+import { IQuestion } from "@/interfaces";
 import Question from "@/models/question";
 
 

@@ -20,6 +20,7 @@ type Providers = Record<string,Provider>;
 const AuthProviders = ()=> {
 
     const [providers, setProviders] = useState<Providers | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(()=>{
         const fetchProviders = async ()=>{
@@ -30,6 +31,11 @@ const AuthProviders = ()=> {
         fetchProviders();
     },[])
 
+    const handleProvider = (provider:string)=>{
+        setIsLoading(true);
+        signIn(provider,{callbackUrl:'/'});
+    };
+
     if(providers){
         return (
             <div>
@@ -37,12 +43,21 @@ const AuthProviders = ()=> {
                     (provider:Provider,i)=>(
                         <div key={i}
                         className='signup-social'
-                        onClick={()=>signIn(provider?.id,{callbackUrl:'/'})}>
+                        onClick={()=>handleProvider(provider.id)}>
                             <Image src={`./${provider.id}-icon.svg`}
                              alt={provider?.id} 
                              width={40}
                              height={40} />
-                            <p>{`Sign in with ${provider?.id}`}</p>
+                            {isLoading ?
+                            <div className='text-center w-100'>
+                                <div className="spinner-border" role="status">
+                                    <span className="visually-hidden">
+                                        Loading...
+                                    </span>
+                                </div>
+                            </div>
+                            :
+                            <p>{`Sign in with ${provider?.id}`}</p>}
                         </div>
                     )
                 )
