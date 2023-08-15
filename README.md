@@ -1,6 +1,8 @@
 # AskVault App
 
 AskVault is an app to ask whatever you want.
+![readme-img](https://github.com/zeus97/askvault/assets/110084225/2639f0cc-f556-4d4a-92a1-5dfc440810f7)
+
 
 
 ## Technologies Used
