@@ -12,6 +12,8 @@ export default function Home() {
 
         <div className={styles.filterA}></div>
         <div className={styles.filterB}></div>
+        <div className={styles.filterC}></div>
+        <div className={styles.filterD}></div>
 
         <h1 className={styles.title}>
           Welcome to <span>AskVault:</span>
