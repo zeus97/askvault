@@ -81,7 +81,7 @@ function ProfileQuestionContainer() {
 
       <div className='profile-questions-c'>
           {questions.length < 1 ?
-          <h3 className='text-center'>You don't have questions</h3>
+          <h3 className='text-center'>You don&#39;t have questions</h3>
           :
           <div className='profile-questions'>
             <div>
