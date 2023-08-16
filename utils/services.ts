@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { IQuestion } from "@/interfaces";
+import { IAnswer } from "@/interfaces";
+import { Question } from './classes';
 
-export const createQuestion = async (question:any)=>{
+
+export const createQuestion = async (question:Question)=>{
     try{
         const res = await axios.post('/api/profile/create',question,{headers:{'Content-Type':'application/json'}});
         
@@ -55,7 +57,7 @@ export const getQuestionByID = async (id:string)=>{
     }
 };
 
-export const createAnswer = async (answer:any)=>{
+export const createAnswer = async (answer:IAnswer)=>{
     try{
         const res = await axios.post('/api/answer',answer,{headers:{'Content-Type':'application/json'}});
         

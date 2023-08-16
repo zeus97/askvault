@@ -17,16 +17,17 @@
     margin-top: 70px;
 
     .profile-c{
-        height: 100%;
+        height: 930px;
 
         .profile-row{
             height: 100%;
-
+            
             .profile-column{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 height: 100%;
+                
 
                 h2{
                     @include gradient-text

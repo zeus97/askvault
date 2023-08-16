@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react"
 import '@/styles/Form.scss';
 import { createQuestion } from '@/utils/services';
+import { ICreator } from '@/interfaces';
+import { Question } from '@/utils/classes';
 
 
 
@@ -54,16 +56,14 @@ function Form() {
             return;
         }
         if(userInfo){
-            
-            const question = {
-                creator:{
-                   id:userInfo._id.toString(),
-                   name:userInfo.name || 'Anonymous',
-                   image:userInfo.image || '/user-default.svg'
-                 },
-                 question:dataForm,
-                 answers:[]
-            };
+            const questionCreator:ICreator = {
+                id:userInfo._id.toString(),
+                name:userInfo.name || 'Anonymous',
+                image:userInfo.image || '/user-default.svg'
+              }
+
+            const question = new Question(questionCreator,dataForm,[])
+           
             setIsLoading(true);
            const response = await createQuestion(question);
            setIsLoading(false);
