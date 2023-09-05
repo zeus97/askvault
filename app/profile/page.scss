@@ -13,21 +13,23 @@
 
 .profile-page{
     width: 100%;
-    min-height: 100vh;
+    height: 930px;
     margin-top: 70px;
 
     .profile-c{
-        min-height: 930px;
+        height: 100%;
 
         .profile-row{
             height: 100%;
-            
             .profile-column{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 height: 100%;
                 
+                @media screen and (max-width:991px){
+                    height: 930px;
+                }
 
                 h2{
                     @include gradient-text
@@ -36,5 +38,9 @@
                 
             }
         }
+    }
+
+    @media screen and (max-width:991px){
+        height: max-content;
     }
 }

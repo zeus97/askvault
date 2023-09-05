@@ -58,6 +58,7 @@ function ProfileQuestionContainer() {
         setModal(false);
         alert(res.data.message);
         getQuestions();
+        setCurrentPage(1);
 
       }else{
         alert("Something went wrong, try later");
