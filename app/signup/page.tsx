@@ -13,7 +13,7 @@ async function  SignupPage() {
 
   
   if(session){
-    return <h2 className='logged-in'>You are already logged in.</h2>
+    return <div className='logged-in'><h2>You are already logged in.</h2></div>
   }
 
   return (
