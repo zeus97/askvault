@@ -73,7 +73,10 @@ function QuestionPage() {
         <div className='container question-page-c'>
           <div className='question-page-q'>
             <div className='question-page-q-userinfo'>
-              <Image src={questionData.creator.image} alt='ads' width={60} height={60}/>
+              <Image src={questionData.creator.image}
+              alt={questionData.creator.name}
+              width={60}
+              height={60}/>
               <p>{questionData.creator.name}</p>
             </div>
             <h2>{questionData.question + "?"}</h2>

@@ -6,6 +6,7 @@
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 5px;
+    transition: all 0.2s ease-in;
 
     &:hover{
         background-color: var(--hover-color);
@@ -33,6 +34,7 @@
 
     .profile-question-delete-btn{
         cursor: pointer;
+        transition: all 0.2s ease-in;
 
         &:hover{
             color: var(--color-red);

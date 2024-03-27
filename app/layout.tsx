@@ -8,6 +8,7 @@ import Provider from '@/components/Provider'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
+
 export const metadata = {
   title: 'AskVault',
   description: 'An app for questions & answers',
