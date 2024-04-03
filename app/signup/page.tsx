@@ -20,7 +20,7 @@ async function  SignupPage() {
     <section className='container-fluid signup-page'>
         <div className='row signup-box'>
             <div className='col-6  column-1'>
-                <Image src='/signup-icon.svg' alt='signup icon' width={400} height={400}/>
+                
             </div>
             <div className='col-md-6 col-sm-12  column-2'>
                 <Image src='/logo.svg' alt='AskVault logo' width={80} height={80} />

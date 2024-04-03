@@ -12,8 +12,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(180deg, rgb(211, 69, 69) 0%, rgb(203, 72, 207) 100%);
-        border-right: 2px solid #333333;
+        background-image: url(/signup-bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
 
     }
     .column-2{
